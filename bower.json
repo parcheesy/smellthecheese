@@ -1,0 +1,12 @@
+{
+  "name": "SmellTheCheese",
+  "version": "0.0.0",
+  "authors": [
+    "Praveen Rudraraju <parcheesy@gmail.com>"
+  ],
+  "description": "blog",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+  }
+}

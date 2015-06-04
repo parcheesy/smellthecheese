@@ -1,0 +1,142 @@
+
+$base-color : #333;
+$alt-color : #ff6600;
+$background-color : #fff;
+
+body {
+        color: $base-color;
+
+}
+
+:focus {
+        outline: 0;
+}
+
+.black {
+        color: $base-color; 
+}
+
+.brder {
+        background-color: $base-color;
+        height: 15px;
+        clear: both;
+        padding-top: 0;
+        margin-top : 2px;
+}
+
+#smell-logo {
+        color: $alt-color;
+        font-size: 36px;
+        font-weight: 500;
+        font-family: inherit;
+        height: auto;
+        padding: 0 0 10px 0;
+        margin-top: 35px;
+        margin-bottom: 0;
+        border: 0 0;
+        float: left;
+}
+
+#testing {
+        background-color: yellow;
+}
+
+#navigation-button {
+        position: relative;
+        float: right;
+        margin-top: 35px;
+        margin-bottom: 0px;
+        margin-right: 0px;
+        margin-left: 0px;
+        button {
+                padding: 3px 3px 3px 3px;
+                background-color: transparent;
+                background-image: none;
+                border: 0;
+        }
+        .icon-bar {
+                display: block;
+                width: 27px;
+                height: 3px;
+                border-radius: 1px;
+                background-color: $base-color;
+                + .icon-bar {
+                        margin-top: 4px;
+                }
+        }
+}
+
+.dropdown-menu.pull-right {
+        right: -1px;
+        > li > a:hover {
+                color: #ff6600 !important;
+                background-color: #fff !important;
+        }
+}
+
+#smell-nav {
+        font-size: inherit;
+        font-family: inherit;
+        background-color: $background-color;
+        height: auto;
+        display: inline;
+        margin: 35px 0 0 0;
+        padding: 0 0 0 0;
+        position: relative;
+        top: 9px;
+        li {
+                padding: 0 5px 0 5px;
+                margin: 0 0 0 0;
+                &:last-child {
+                        padding: 0 0 0 5px;
+                }
+        }
+        a {
+                color: #333;
+                padding: 0 0;
+                margin: 0 0;
+                &:hover {
+                        color: $alt-color !important;
+                        background-color: inherit !important;
+                        text-decoration: none !important;
+                }
+        }
+}
+
+.divide-before {
+        border-left: 1px solid #333;
+        padding-left: 6px;
+}
+
+.divide-after {
+        padding-right: 6px;
+}
+
+.navbar-default .navbar-nav {
+        > li > a {
+                color: $base-color !important;
+                &:hover {
+                        color: $alt-color !important;
+                        background-color: inherit !important;
+                        text-decoration: none !important;
+                }
+        }
+} 
+
+.navbar-fixed-width {
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        border-width: 1px 1px 0;
+        @media (min-width: 768px) {
+                width: 720px;
+        }
+        @media (min-width: 992px) {
+                width: 940px;
+        }
+        @media (min-width: 1200px) {
+                width: 1140px;
+        }
+}
+
