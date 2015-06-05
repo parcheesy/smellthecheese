@@ -11,11 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150604220403) do
+ActiveRecord::Schema.define(version: 20150605090158) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.text     "code"
   end
 
   create_table "articles", force: true do |t|
@@ -25,7 +27,18 @@ ActiveRecord::Schema.define(version: 20150604220403) do
     t.string   "imagePath"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
+
+  create_table "assignments", force: true do |t|
+    t.integer  "app_id"
+    t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assignments", ["app_id"], name: "index_assignments_on_app_id"
+  add_index "assignments", ["article_id"], name: "index_assignments_on_article_id"
 
   create_table "players", force: true do |t|
     t.datetime "created_at"
