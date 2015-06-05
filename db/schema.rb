@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150604143034) do
+ActiveRecord::Schema.define(version: 20150604220403) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -423,6 +423,9 @@ ActiveRecord::Schema.define(version: 20150604143034) do
     t.decimal  "diff_shooting_fouls_drawn_pg"
     t.decimal  "diff_and1_pg"
     t.decimal  "diff_shots_blocked_pg"
+    t.integer  "player_id"
   end
+
+  add_index "seasons", ["player_id"], name: "index_seasons_on_player_id"
 
 end
