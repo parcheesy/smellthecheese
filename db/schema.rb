@@ -11,18 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605090158) do
+ActiveRecord::Schema.define(version: 20150608160947) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.text     "code"
+    t.text     "html"
+    t.string   "position"
+    t.text     "js"
+    t.integer  "connection_id"
+    t.string   "object"
+    t.string   "cssid"
+    t.string   "citation"
   end
+
+  add_index "apps", ["connection_id"], name: "index_apps_on_connection_id"
 
   create_table "articles", force: true do |t|
     t.string   "title"
-    t.date     "date"
+    t.string   "date"
     t.text     "body"
     t.string   "imagePath"
     t.datetime "created_at"
@@ -39,6 +47,12 @@ ActiveRecord::Schema.define(version: 20150605090158) do
 
   add_index "assignments", ["app_id"], name: "index_assignments_on_app_id"
   add_index "assignments", ["article_id"], name: "index_assignments_on_article_id"
+
+  create_table "connections", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "players", force: true do |t|
     t.datetime "created_at"
@@ -241,7 +255,11 @@ ActiveRecord::Schema.define(version: 20150605090158) do
     t.decimal  "diff_shooting_fouls_drawn_pg"
     t.decimal  "diff_and1_pg"
     t.decimal  "diff_shots_blocked_pg"
+    t.integer  "connection_id"
+    t.string   "keywords"
   end
+
+  add_index "players", ["connection_id"], name: "index_players_on_connection_id"
 
   create_table "seasons", force: true do |t|
     t.datetime "created_at"

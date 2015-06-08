@@ -3,6 +3,7 @@ $base-color : #333;
 $alt-color : #ff6600;
 $background-color : #fff;
 
+
 body {
         color: $base-color;
 
@@ -10,6 +11,11 @@ body {
 
 :focus {
         outline: 0;
+}
+
+
+.current {
+        color: $alt-color !important;
 }
 
 .black {
@@ -113,6 +119,16 @@ body {
 }
 
 .navbar-default .navbar-nav {
+        li, a {
+                padding-top: 3px;;
+        }
+        &.navbar-left  {
+                li, a {
+                        margin-left: 0 !important; 
+                        padding-left: 0 !important;
+
+                }
+        }
         > li > a {
                 color: $base-color !important;
                 &:hover {
@@ -124,11 +140,14 @@ body {
 } 
 
 .navbar-fixed-width {
-        padding-left: 15px;
-        padding-right: 15px;
+        min-height: 35px;
+        height: 35px;
+        padding-left: 12px;
+        padding-right: 12px;
         margin-right: auto;
         margin-left: auto;
         border-width: 1px 1px 0;
+        border-color: $base-color;
         @media (min-width: 768px) {
                 width: 720px;
         }
@@ -140,6 +159,4 @@ body {
         }
 }
 
-.current {
-        color: $alt-color !important;
-}
+

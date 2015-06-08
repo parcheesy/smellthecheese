@@ -1,0 +1,32 @@
+<%if @app_objects%>
+        $('#player-wrapper h3').text("<%= @app_objects.first.name %>");
+        $('img#player_image').attr("src", "<%= asset_path "ajax-loader.gif" %>");
+        $('img#player_image').attr("src", "<%= @app_objects.first.image %>");
+        <% @rows = ["mpg", "ppg", "fg_perc", "three_fg_perc", "apg", "topg"] %>
+        <% @stats = ["minutes_pg", "pts_pg", "fg_perc", "threept_perc", "ast_pg", "to_pg"] %>
+        <% @rows.zip(@stats).each do |row, stat| %>
+                <% if row == "fg_perc" || row == "three_fg_perc" %>
+                        $('tr#' + '<%=row%>' + ' .reg_season').text("<%= BigDecimal(@app_objects.first.send(stat)) * 100 %>%");
+                        $('tr#' + '<%=row%>' + ' .post_season').text("<%= BigDecimal(@app_objects.first.send("playoff_#{stat}")) * 100%>%");
+                        $('tr#' + '<%=row%>' + ' .difference').text("<%= BigDecimal(@app_objects.first.send("diff_#{stat}")) * 100%>%");
+                      
+                <% else %>
+
+                        $('tr#' + '<%=row%>' + ' .reg_season').text("<%= @app_objects.first.send(stat) %>");
+                        $('tr#' + '<%=row%>' + ' .post_season').text("<%= @app_objects.first.send("playoff_#{stat}")%>");
+                        $('tr#' + '<%=row%>' + ' .difference').text("<%= @app_objects.first.send("diff_#{stat}")%>");
+                <% end %>
+                <% if @app_objects.first.send("diff_#{stat}") >= 0 %>
+                $('tr#' + '<%=row%>' + ' .difference').addClass("positive");
+                <% else %>
+                $('tr#' + '<%=row%>' + ' .difference').removeClass("positive");
+                <% end %>
+
+
+        <% end %>
+        $('#mpg .reg_season')
+        $('#name-form').val("");
+        $('.typeahead').typeahead('val', '');
+<%end%>
+
+

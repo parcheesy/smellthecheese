@@ -1,11 +1,25 @@
-              <div class="row text-left">
-                      <div class="col-xs-12 text-left">
-                              <% @articles.each do |article|  %>
-                              <h2 style="font-size:25px; font-family: 'Helvetica Neue'; padding-top: 20px"><%= article.title %></h2>
-                              <h5 style="font-size:16px; font-family: 'Helvetica Neue'; padding-top: 20px; padding-bottom: 5px">Posted <%= article.date  %></h5>
-                              <p style="font-size:16px; font-family: 'Helvetica Neue'; line-height: 25px"><%= article.body  %></p>
-                              <% end %>
-                      </div>
-              </div>
+        <% @articles.each do |article|  %>
 
+                <div class="row text-left" id="article">
+                        <div class="col-xs-12 text-left">
+               
+                              <a href='/'> <i class="icon-dribbble"></i></a> <h2><%= article.title %></h2>
 
+                                <%= render :partial => "apps/app_template", :locals => { :app => article.apps.first } %>
+                                
+                                <h5 id="post-date">Posted <%= article.date  %></h5>
+
+                                <%= raw article.body  %>
+
+                        </div>
+                </div>
+
+                <% if @articles.count>1 && article==@articles.last %>
+
+                <div class="col-xs-12 spacer">
+                        <div class="mask"></div>
+                </div>
+
+                <% end %>
+
+        <% end %>

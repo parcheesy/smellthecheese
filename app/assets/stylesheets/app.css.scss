@@ -1,0 +1,68 @@
+$base-color : #333;
+$alt-color : #ff6600;
+$background-color : #fff;
+$app-background-color: #f8f8f8;
+$positive-color: rgba(92, 184, 92, 0.7);
+$negative-color: rgba(217, 83, 79, 0.7);
+
+.app {
+
+        background-color: $app-background-color;
+        border: 1px solid $base-color;
+        margin: 0;
+        padding: 0 0 0 0;
+                
+}
+
+p.citation {
+        font-size: 9px !important;
+        padding: 0 0 0 0 !important;
+        margin: 0 0 0 0 !important;
+        line-height: 10px !important;
+}
+
+#playoff_regular_app #player-wrapper{
+        
+        h3 {
+                padding-top:0;
+                margin-top: 10px;
+        }
+        img {
+                height:125px;
+                width: auto;
+                margin-left: auto;
+                margin-right: auto;
+                padding-bottom: 0;
+                margin-top: 5px;
+        }
+}
+
+
+#table-container {
+        margin: 0;
+        padding: 0;
+        table {
+                border-collapse: collapse;
+                border-bottom-width: 0;
+                @media (min-width: 768px) {
+                        border-top-width: 0;
+                }
+                &#stats {
+                        padding: 0;
+                        margin: 0;
+                        font-size: 10px;
+                        height: 100%;
+                        width: 100%;
+                        td.difference {
+                                background-color: $negative-color;
+                                &.positive {
+                                        background-color: $positive-color;
+                                }
+                        }
+                }
+
+        }
+}
+
+
+

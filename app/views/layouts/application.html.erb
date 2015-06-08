@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SmellTheCheese</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <title>TrackAndCheese</title>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
         <div class="container">
-               <a href='/' class="navbar-brand" id="smell-logo">smell<span class="black">the</span>cheese</a>
+               <a href='/' class="navbar-brand" id="smell-logo">track<span class="black" >and</span>cheese</a>
                <div class="hidden-sm hidden-md hidden-lg" id="navigation-button">
                        <button data-toggle="dropdown">
                                <span class='sr-only'>Toggle navigation</span>
@@ -42,7 +42,8 @@
                                </div>
                        </div>
                </div>
-
+                
+               
                 <%= yield %>
 
 

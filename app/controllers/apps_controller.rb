@@ -4,7 +4,11 @@ class AppsController < ApplicationController
   # GET /apps
   # GET /apps.json
   def index
-    @apps = App.all
+    @app = App.find(params[:appid].to_i)
+    @app_objects = @app.connection.send(@app.object.downcase.pluralize).search(params[:namesearch])
+    respond_to do |format|
+        format.js
+    end
   end
 
   # GET /apps/1
