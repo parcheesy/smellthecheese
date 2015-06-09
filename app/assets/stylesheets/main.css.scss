@@ -10,9 +10,13 @@ body {
 }
 
 :focus {
-        outline: 0;
-}
+        outline-color: $alt-color !important;
+};
 
+input:focus{
+        border-color: $alt-color !important;
+        box-shadow: 0 0 5px rgba($alt-color, 0.4) !important;
+}
 
 .current {
         color: $alt-color !important;

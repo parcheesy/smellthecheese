@@ -1,3 +1,5 @@
 class Season < ActiveRecord::Base
-        belongs_to :player
+        has_many :seasonassociations
+        has_many :players, through: :seasonassociations
+
 end

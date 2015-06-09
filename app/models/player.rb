@@ -1,5 +1,6 @@
 class Player < ActiveRecord::Base
-        has_many :seasons
+        has_many :seasonassociations
+        has_many :seasons,  through: :seasonassociations 
         belongs_to :connection
         before_save :set_keywords
         

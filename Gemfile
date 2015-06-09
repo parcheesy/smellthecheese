@@ -26,6 +26,12 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
+# Groupdate to group data by date/time
+gem 'groupdate'
+
+# Chartkick for easily generateed javascript charts 
+gem 'chartkick'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -5,8 +5,8 @@ Season.destroy_all
 Assignment.destroy_all
 Connection.destroy_all
 
-players = ActiveSupport::JSON.decode(File.read("jsons/playoff_players.json"))
-seasons = ActiveSupport::JSON.decode(File.read("jsons/player_playoff_seasons.json"))
+players = ActiveSupport::JSON.decode(File.read("jsons/better_playoff_players.json"))
+seasons = ActiveSupport::JSON.decode(File.read("jsons/better_player_playoff_seasons.json"))
 
 #Create players
 Player.create!(players)
@@ -21,10 +21,13 @@ p "Created #{Season.count} seasons"
 #Associate seasons to players
 all_seasons = Season.all
 all_seasons.each do |season|
-        season.update(player: Player.where(name: season.name).first)
+        every_player = Player.where(name: season.name)
+        every_player.each do |player|
+               Seasonassociation.create(player: player, season: season) 
+        end
 end
 
-p "Added #{Season.where.not(player_id: nil).count} seasons to players"
+p "Added #{Seasonassociation.count} season to player association"
 
 #Add Articles
 article = Article.create(title: "NBA Player Performance: Regular Season vs Playoffs", date: "June 3, 2015", body: "<p>Every year when the NBA playoffs arrive, pundits often repeat the idea that playoff basketball is a different beast. That opinion is especially common among former players and coaches, but is also echoed by most writers and fans of the game. The difference is attributed to a number of factors including: slower pace, more physicality, more defensive effort, pressure from the spotlight, and improved game planning when playing the same team repeatedly. But analysts that rely on statistical measures usually make predictions based on the regular season. That's reasonable because the most recent data available about the particular teams in the playoffs comes from the regular season.</p>
