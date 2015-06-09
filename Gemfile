@@ -44,3 +44,5 @@ gem 'chartkick'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Use Passenger as app server
+gem 'passenger'
