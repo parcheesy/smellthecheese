@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609085908) do
+ActiveRecord::Schema.define(version: 20150609100059) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20150609085908) do
     t.string   "handedness"
     t.string   "image"
     t.string   "league"
-    t.string   "type"
+    t.string   "stat"
     t.decimal  "adv_fg_perc"
     t.decimal  "adv_minutes_pg"
     t.decimal  "and1_pg"
@@ -129,6 +129,8 @@ ActiveRecord::Schema.define(version: 20150609085908) do
     t.integer  "adv_games"
     t.integer  "games"
     t.integer  "games_started"
+    t.string   "keywords"
+    t.integer  "connection_id"
   end
 
   create_table "seasonassociations", force: true do |t|
@@ -148,7 +150,7 @@ ActiveRecord::Schema.define(version: 20150609085908) do
     t.string   "team"
     t.string   "league"
     t.string   "position"
-    t.string   "type"
+    t.string   "stat"
     t.decimal  "and1_pg"
     t.decimal  "ast_pg"
     t.decimal  "badpass_to_pg"
