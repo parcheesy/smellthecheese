@@ -14,6 +14,8 @@ body {
 };
 
 input:focus{
+        outline: 0;
+        border: 0;
         border-color: $alt-color !important;
         box-shadow: 0 0 5px rgba($alt-color, 0.4) !important;
 }
