@@ -32,21 +32,21 @@ article = Article.create(title: "NBA Player Performance: Regular Season vs Playo
 <p>There will be a lot of steps in this process, but I figured that a good starting point (or the point that was easiest for me to start at) would be allowing myself and others to easily evaluate how individual players performed in the regular season versus the playoff. The above application offers just that. Type in the name of a player and see how his career regular season stats compare to his career playoff stats. As of now it only includes data from players currently in the NBA who have played in the playoffs. More on this topic to come!</p>")
 
 app = App.create(name: "PlayoffvsRegularSeason", position: "top", object: "Player", cssid: "playoff_regular_app", citation: "Image and statistics from basketball-reference.com", html:"
-        <% player=Player.where(name:"Stephen Curry").first %>
+        <% player=Player.where(name:'Stephen Curry').first %>
 
-        <%= form_tag({controller:'apps', action: 'index'}, class:'special-submit', method: "get", remote: true)  do %>
-          <div id="bloodhound">
+        <form accept-charset='UTF-8' action='/apps' method='get' class='special-submit' data-remote='true'>
+          <div id='bloodhound'>
           <input type='hidden' name='appid' value='<%=app.id%>'>
-          <input type='text' id='name-form'  class='form-control typeahead' value='<%= params[:namesearch] %>' name='namesearch' placeholder="Enter Player Name" autocomplete="off" >
+          <input type='text' id='name-form'  class='form-control typeahead' value='<%= params[:namesearch] %>' name='namesearch' placeholder='Enter Player Name' autocomplete='off' >
           <input type='submit' value='Submit' style='display:none' >
           </div>
-        <% end %>
-                        <div class="col-sm-6 col-xs-12 text-center" id="player-wrapper">
+        </form>
+                        <div class='col-sm-6 col-xs-12 text-center' id='player-wrapper'>
                                 <h3><%=player.name%></h3>
-                                <%= image_tag(player.image, id:"player_image") %>
+                                <%= image_tag(player.image, id:'player_image') %>
                         </div>
-                        <div id="table-container" class="col-sm-6 col-xs-12">
-                                <table id="stats" class="table table-bordered table-hover table-condensed table-responsive">
+                        <div id='table-container' class='col-sm-6 col-xs-12'>
+                                <table id='stats' class='table table-bordered table-hover table-condensed table-responsive'>
                                         <thead>
                                                 <tr>
                                                         <th>Career Stats</th>
@@ -56,74 +56,106 @@ app = App.create(name: "PlayoffvsRegularSeason", position: "top", object: "Playe
                                                 </tr>
                                         </thead>
                                         <tbody>
-                                                <tr id="mpg">
+                                                <tr id='mpg'>
                                                         <td>MPG</td>
-                                                        <td class="reg_season"><%=player.minutes_pg%></td>
-                                                        <td class="post_season"><%=player.playoff_minutes_pg%></td>
+                                                        <td class='reg_season'><%=player.minutes_pg%></td>
+                                                        <td class='post_season'><%=player.playoff_minutes_pg%></td>
                                                         <% if player.diff_minutes_pg >= 0 %>
-                                                        <td class="difference positive"><%=player.diff_minutes_pg%></td>
+                                                        <td class='difference positive'><%=player.diff_minutes_pg%></td>
                                                         <% else %>
-                                                        <td class="difference"><%=player.diff_minutes_pg%></td>
+                                                        <td class='difference'><%=player.diff_minutes_pg%></td>
                                                         <% end %>
 
                                                 </tr>
 
-                                                <tr id="ppg">
+                                                <tr id='ppg'>
                                                         <td>PPG</td>
-                                                        <td class="reg_season"><%=player.pts_pg%></td>
-                                                        <td class="post_season"><%=player.playoff_pts_pg%></td>
+                                                        <td class='reg_season'><%=player.pts_pg%></td>
+                                                        <td class='post_season'><%=player.playoff_pts_pg%></td>
                                                         <% if player.diff_pts_pg >= 0 %>
-                                                        <td class="difference positive"><%=player.diff_pts_pg%></td>
+                                                        <td class='difference positive'><%=player.diff_pts_pg%></td>
                                                         <% else %>
-                                                        <td class="difference negative"><%=player.diff_pts_pg%></td>
+                                                        <td class='difference negative'><%=player.diff_pts_pg%></td>
                                                         <% end %>
 
                                                 </tr>
-                                                <tr id="fg_perc">
+                                                <tr id='fg_perc'>
                                                         <td>FG%</td>
-                                                        <td class="reg_season"><%=BigDecimal(player.fg_perc) * 100%>%</td>
-                                                        <td class="post_season"><%=BigDecimal(player.playoff_fg_perc) * 100%>%</td>
+                                                        <td class='reg_season'><%=BigDecimal(player.fg_perc) * 100%>%</td>
+                                                        <td class='post_season'><%=BigDecimal(player.playoff_fg_perc) * 100%>%</td>
                                                         <% if player.diff_fg_perc >= 0 %>
-                                                        <td class="difference positive"><%=BigDecimal(player.diff_fg_perc) * 100%>%</td>
+                                                        <td class='difference positive'><%=BigDecimal(player.diff_fg_perc) * 100%>%</td>
                                                         <% else %>
-                                                        <td class="difference negative"><%=BigDecimal(player.diff_fg_perc) * 100%>%</td>
+                                                        <td class='difference negative'><%=BigDecimal(player.diff_fg_perc) * 100%>%</td>
                                                         <% end %>
 
                                                 </tr>
-                                                <tr id="three_fg_perc">
+                                                <tr id='three_fg_perc'>
                                                         <td>3ptFG%</td>
-                                                        <td class="reg_season"><%=BigDecimal(player.threept_perc) * 100%>%</td>
-                                                        <td class="post_season"><%=BigDecimal(player.playoff_threept_perc) * 100%>%</td>
+                                                        <td class='reg_season'><%=BigDecimal(player.threept_perc) * 100%>%</td>
+                                                        <td class='post_season'><%=BigDecimal(player.playoff_threept_perc) * 100%>%</td>
                                                         <% if player.diff_threept_perc >= 0 %>
-                                                        <td class="difference positive"><%=BigDecimal(player.diff_threept_perc) * 100%>%</td>
+                                                        <td class='difference positive'><%=BigDecimal(player.diff_threept_perc) * 100%>%</td>
                                                         <% else %>
-                                                        <td class="difference negative"><%=BigDecimal(player.diff_threept_perc) * 100%>%</td>
+                                                        <td class='difference negative'><%=BigDecimal(player.diff_threept_perc) * 100%>%</td>
                                                         <% end %>
 
                                                 </tr>
-                                                <tr id="apg">
+                                                <tr id='apg'>
                                                         <td>APG</td>
-                                                        <td class="reg_season"><%=player.ast_pg%></td>
-                                                        <td class="post_season"><%=player.playoff_ast_pg%></td>
+                                                        <td class='reg_season'><%=player.ast_pg%></td>
+                                                        <td class='post_season'><%=player.playoff_ast_pg%></td>
                                                         <% if player.diff_ast_pg >= 0 %>
-                                                        <td class="difference positive"><%=player.diff_ast_pg%></td>
+                                                        <td class='difference positive'><%=player.diff_ast_pg%></td>
                                                         <% else %>
-                                                        <td class="difference negative"><%=player.diff_ast_pg%></td>
+                                                        <td class='difference negative'><%=player.diff_ast_pg%></td>
                                                         <% end %>
                                                 </tr>
-                                               <tr id="topg">
+                                               <tr id='topg'>
                                                         <td>TOPG</td>
-                                                        <td class="reg_season"><%=player.to_pg%></td>
-                                                        <td class="post_season"><%=player.playoff_to_pg%></td>                         
+                                                        <td class='reg_season'><%=player.to_pg%></td>
+                                                        <td class='post_season'><%=player.playoff_to_pg%></td>                         
                                                         <% if player.diff_to_pg >= 0 %>
-                                                        <td class="difference positive"><%=player.diff_to_pg%></td>
+                                                        <td class='difference positive'><%=player.diff_to_pg%></td>
                                                         <% else %>
-                                                        <td class="difference negative"><%=player.diff_to_pg%></td>
+                                                        <td class='difference negative'><%=player.diff_to_pg%></td>
                                                         <% end %>
                                                </tr>
                                        </tbody>
                                 </table>
-                        </div>")
+                        </div>", js: "
+                        
+                        <%if @app_objects%>
+                                $('#player-wrapper h3').text('<%= @app_objects.first.name %>');
+                                $('img#player_image').attr('src', '<%= asset_path(\"ajax-loader.gif\") %>');
+                                $('img#player_image').attr('src', '<%= @app_objects.first.image %>');
+                                <% @rows = ['mpg', 'ppg', 'fg_perc', 'three_fg_perc', 'apg', 'topg'] %>
+                                <% @stats = ['minutes_pg', 'pts_pg', 'fg_perc', 'threept_perc', 'ast_pg', 'to_pg'] %>
+                                <% @rows.zip(@stats).each do |row, stat| %>
+                                        <% if row == 'fg_perc' || row == 'three_fg_perc' %>
+                                                $('tr#' + '<%=row%>' + ' .reg_season').text('<%= BigDecimal(@app_objects.first.send(stat)) * 100 %>%');
+                                                $('tr#' + '<%=row%>' + ' .post_season').text('<%= BigDecimal(@app_objects.first.send(\"playoff_\" + stat)) * 100%>%');
+                                                $('tr#' + '<%=row%>' + ' .difference').text('<%= BigDecimal(@app_objects.first.send(\"diff_\" + stat)) * 100%>%');
+                                              
+                                        <% else %>
+                        
+                                                $('tr#' + '<%=row%>' + ' .reg_season').text('<%= @app_objects.first.send(stat) %>');
+                                                $('tr#' + '<%=row%>' + ' .post_season').text('<%= @app_objects.first.send(\"playoff_\" + stat)%>');
+                                                $('tr#' + '<%=row%>' + ' .difference').text('<%= @app_objects.first.send(\"diff_\" + stat)%>');
+                                        <% end %>
+                                        <% if @app_objects.first.send('diff_' + stat) >= 0 %>
+                                        $('tr#' + '<%=row%>' + ' .difference').addClass('positive');
+                                        <% else %>
+                                        $('tr#' + '<%=row%>' + ' .difference').removeClass('positive');
+                                        <% end %>
+                        
+                        
+                                <% end %>
+                                $('#mpg .reg_season')
+                                $('#name-form').val('');
+                                $('.typeahead').typeahead('val', '');
+                        <%end%>
+                        ")
 
 
 Assignment.create(app: app, article: article)
