@@ -1,13 +1,23 @@
 {
   "name": "SmellTheCheese",
   "version": "0.0.0",
+  "homepage": "https://github.com/parcheesy/smellthecheese",
   "authors": [
     "Praveen Rudraraju <parcheesy@gmail.com>"
   ],
   "description": "blog",
   "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
   "dependencies": {
     "bootstrap": "~3.3.4",
-    "typeahead.js": "~0.11.1"
+    "typeahead.js": "~0.11.1",
+    "highcharts-release": "~4.1.5"
   }
 }

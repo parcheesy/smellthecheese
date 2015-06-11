@@ -1,1 +1,23 @@
-<%= render inline: @app.js  %>
+<% p1 = @app_objects.where(stat:'regular') %>
+<% p2 = @app_objects.where(stat:'playoff') %>
+
+<%if false%>
+new Chartkick.PieChart('chart-1', <%=fg_type_taken_hash(p1)%>, <%=chart_options_hash()%>);
+new Chartkick.ColumnChart('chart-2', <%=dist_taken_hash(p1)%>, <%=chart_options_hash()%>);
+
+new Chartkick.PieChart('chart-3', '<%=fg_type_taken_hash(p2)%>', '<%=chart_options_hash()%>');
+new Chartkick.ColumnChart('chart-4', '<%=dist_taken_hash(p2)%>', '<%=chart_options_hash()%>');
+
+<% end %>
+new Chartkick.PieChart('chart-1', {'2pt FG':'<%=p1.sum(:twopt_fga)%>','3pt FG':'<%=p1.sum(:threept_fga)%>'}, {'height':'250px', 'library':{'backgroundColor':'#f8f8f8','tooltip':{'text':'percentage'}}});
+new Chartkick.ColumnChart('chart-2', {'0-3 ft':'<%=p1.sum_percents(:dist_0to3feet_fga, :fga) %>','3-10 ft':'<%=p1.sum_percents(:dist_3to10feet_fga,:fga) %>','10-16 ft':'<%=p1.sum_percents(:dist_10to16feet_fga, :fga) %>','16ft-3PT':'<%=p1.sum_percents(:dist_16to3pt_fga, :fga) %>', '3PT+':'<%=p1.sum_percents(:threept_fgm, :fga'}%>'}, {'height':'250px', 'library': {'backgroundColor':'#f8f8f8'}});
+
+
+new Chartkick.PieChart('chart-3', {'2pt FG':'<%=p2.sum(:twopt_fga)%>','3pt FG':'<%=p2.sum(:threept_fga)%>'}, {'height':'250px', 'library':{'backgroundColor':'#f8f8f8','tooltip':{'text':'percentage'}}});
+new Chartkick.ColumnChart('chart-4', {'0-3 ft':'<%=p2.sum_percents(:dist_0to3feet_fga, :fga) %>','3-10 ft':'<%=p2.sum_percents(:dist_3to10feet_fga,:fga) %>','10-16 ft':'<%=p2.sum_percents(:dist_10to16feet_fga, :fga) %>','16ft-3PT':'<%=p2.sum_percents(:dist_16to3pt_fga, :fga) %>', '3PT+':'<%=p2.sum_percents(:threept_fgm, :fga%>'}, {'height':'250px', 'library': {'backgroundColor':'#f8f8f8'}});
+;
+
+<%if false%>
+
+        <%= render inline: @app.js  %>
+<%end%>
