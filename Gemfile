@@ -29,9 +29,6 @@ gem 'spring',        group: :development
 # Groupdate to group data by date/time
 gem 'groupdate'
 
-# Chartkick for easily generateed javascript charts 
-gem 'chartkick'
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -14,5 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap/dist/js/bootstrap
 //= require typeahead.js/dist/typeahead.bundle
+//= require highcharts-release/highcharts.js
+//= require highcharts-release/exporting.js
 //= require turbolinks
 //= require_tree .
