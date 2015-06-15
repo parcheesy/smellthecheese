@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   resources :apps
   resources :articles
-  root to: 'articles#index'
+  root to:            'articles#index'
+  get 'sports'     => 'articles#sports' 
+  get 'government' => 'articles#government'
+  get 'news'        => 'articles#news'
+  get 'health'     => 'articles#health'
+  get 'about'      => 'articles#about'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

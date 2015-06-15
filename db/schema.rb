@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609100059) do
+ActiveRecord::Schema.define(version: 20150612083054) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150609100059) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "topic"
   end
 
   create_table "assignments", force: true do |t|
@@ -131,6 +132,26 @@ ActiveRecord::Schema.define(version: 20150609100059) do
     t.integer  "games_started"
     t.string   "keywords"
     t.integer  "connection_id"
+    t.string   "position"
+    t.float    "height_float"
+    t.integer  "fga"
+    t.integer  "fgm"
+    t.decimal  "dist_0to3feet_fga"
+    t.decimal  "dist_0to3feet_fgm"
+    t.decimal  "dist_3to10feet_fga"
+    t.decimal  "dist_3to10feet_fgm"
+    t.decimal  "dist_10to16feet_fgm"
+    t.decimal  "dist_10to16feet_fga"
+    t.decimal  "dist_16to3pt_fgm"
+    t.decimal  "dist_16to3pt_fga"
+    t.decimal  "threept_fgm"
+    t.decimal  "threept_fga"
+    t.decimal  "twopt_fgm"
+    t.decimal  "twopt_fga"
+    t.decimal  "corner_fgm"
+    t.decimal  "corner_fga"
+    t.decimal  "non_corner_fgm"
+    t.decimal  "non_corner_fga"
   end
 
   create_table "seasonassociations", force: true do |t|

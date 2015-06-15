@@ -19,4 +19,12 @@ module ArticlesHelper
 
           markdown.render(text).html_safe
         end
+        
+        def link_helper(text, path, current)
+                if current==text
+                        link_to text, path, class:'current'
+                else
+                        link_to text, path
+                end
+        end
 end

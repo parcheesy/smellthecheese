@@ -1,4 +1,9 @@
+<%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
 <div class="app col-xs-12" id="<%=app.cssid%>">
         <%= render html: ERB.new(app.html).result(binding).html_safe %>
 </div>
-<p class="citation text-muted"><%=app.citation%></p>
+<% if app.citation %>
+<p class="citation text-muted"><%=app.citation%> </p>
+<% else %>
+<div class="fix_spacing col-xs-12"></div>
+<% end %>

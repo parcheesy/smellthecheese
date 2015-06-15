@@ -1,25 +1,112 @@
-        <% @articles.each do |article|  %>
+ <div class="container">
+                <%=link_to "track<span class='black' >and</span>cheese".html_safe, root_path, class:"navbar-brand", id:"smell-logo" %>
+               <div class="hidden-sm hidden-md hidden-lg" id="navigation-button">
+                       <button data-toggle="dropdown">
+                               <span class='sr-only'>Toggle navigation</span>
+                               <div class="icon-bar"></div>
+                               <div class="icon-bar"></div>
+                               <div class="icon-bar"></div>
+                       </button>
+                       <ul class='dropdown-menu pull-right'>
+                                <li id='cheese'><%= link_helper("cheese", root_path, @current) %></li>
+                                <li id='sports'><%= link_helper("sports", sports_path, @current) %></li>
+                                <li id='government'><%= link_helper("government", government_path, @current)%></li>
+                                <li id='news'><%= link_helper("news", news_path, @current) %></li>
+                                <li id='health'><%= link_helper("health", health_path, @current) %></li>
+                                <li class='divider'></li>
+                                <li class='about'><%= link_helper("about", about_path, @current) %></li>
+                       </ul>
+               </div>
+               <ul class="nav navbar-nav navbar-right hidden-xs" id="smell-nav">
+                                <li id='cheese'><%= link_helper("cheese", root_path, @current) %></li>
+                                <li id='sports'><%= link_helper("sports", sports_path, @current) %></li>
+                                <li id='government'><%= link_helper("government", government_path, @current)%></li>
+                                <li id='news'><%= link_helper("news", news_path, @current) %></li>
+                                <li id='health' class="divide-after"><%= link_helper("health", health_path, @current) %></li>
+                                <li id='about' class="divide-before"><%= link_helper("about", about_path, @current) %></li>
+               </ul>
+               <div class="row" >
+                       <div class="col-xs-12">
+                               <div class="brder">
+                               </div>
+                       </div>
+               </div>
+                
+        
 
-                <div class="row text-left" id="article">
-                        <div class="col-xs-12 text-left">
-               
-                              <a href='/'> <i class="icon-dribbble"></i></a> <h2><%= article.title %></h2>
+                <% if @articles.present? %>
+                        <% @articles.each do |article|  %>
+                
+                                <div class="row text-left" id="article">
+                                        <div class="col-xs-12 text-left">
+                               
+                                              <%= link_to " <i class='icon-dribbble'></i>".html_safe, sports_path%><h2><%=article.title%></h2>
+                
+                                                <%= render :partial => "apps/app_template", :locals => { :app => article.apps.first } %>
+                                                
+                                                <h5 id="post-date">Posted <%= article.date  %></h5>
+                
+                                                <%= raw article.body  %>
+                
+                                        </div>
+                                </div>
+                
+                                <% if @articles.count>1 && article!=@articles.last %>
+                
+                                <div class="col-xs-12 spacer">
+                                        <div class="mask"></div>
+                                </div>
+                
+                                <% end %>
+                
+                        <% end %>
+                <% else %>
+                        <% if @current=="about" %>
+                                <div class= "row text-left" id="article">
 
-                                <%= render :partial => "apps/app_template", :locals => { :app => article.apps.first } %>
-                                
-                                <h5 id="post-date">Posted <%= article.date  %></h5>
+                                <div class="col-xs-12 text-left" id="about">
+                                        <h4>About</h4>
+                                        <p>I'm a programmer with interests in web development and statistics. The purpose of this site is to combine those with some of my more general interests. Ultimately, I want to apply statistics and math to a variety of areas in a visually appealing and user-friendly way.</p>
+                                </div>
+                                <div class="col-xs-6 text-center topics" id='about-sports'>
+                                        <%= link_to "<i class='icon-dribbble'></i>".html_safe, sports_path%><h4>Sports</h4>
+                                        <p>Focused mainly on basketball and football.</p>
+                                </div>
+                                <div class="col-xs-6 text-center topics" id='about-government'>
+                                        <%= link_to "<i class='icon-library'></i>".html_safe, government_path%><h4>Government</h4>
+                                        <p>Interested in campaign finance and congressional history.</p>
+                                </div>
+                                <div class="col-xs-6 text-center topics" id='about-news'>
+                                        <%= link_to "<i class='icon-newspaper'></i>".html_safe, news_path%><h4>News</h4>
+                                        <p>Any topic I feel like exploring from recent news.</p>
+                                </div>
+                                <div class="col-xs-6 text-center topics" id='about-health'>
+                                        <%= link_to "<i class='icon-stats-dots'></i>".html_safe, health_path%><h4>Health</h4>
+                                        <p>Nutritional topics and public health policy.</p>
+                                </div>
 
-                                <%= raw article.body  %>
+                        <% else %>
+                                <div class="row text-left" id="article">
 
-                        </div>
-                </div>
-
-                <% if @articles.count>1 && article==@articles.last %>
-
-                <div class="col-xs-12 spacer">
-                        <div class="mask"></div>
-                </div>
-
+                                        <div class="col-xs-12 text-left" id="empty-message">
+                               
+                                                <h4>Sorry, there aren't any <%= @empty_message  %> posts yet, but stay tuned!</h4>
+                
+                                        </div>
+                                </div>
+                        <% end %>
                 <% end %>
+ </div>
+ <!--
+<div class="navbar navbar-default navbar-fixed-bottom navbar-fixed-width hidden-xs">
+        <ul class="nav navbar-nav navbar-left"> 
+                <li><a href='/'>first</a></li>
+                <li><a href='/'>prev</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+                 <li><a href='/'>next</a></li>
+                 <li><a href='/'>last</a></li>
+         </ul>
+</div>
+-->
 
-        <% end %>

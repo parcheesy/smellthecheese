@@ -1,7 +1,7 @@
 // Implement typeahead and bloodhound for guest search
 // Find documentation at https://github.com/twitter/typeahead.js/
-$(document).ready(function(){
 
+var typeahead = function() {
         // Assign all guest fullnames to an array
         var players = <%= Player.all.map {|p| p.name } %>;
         
@@ -23,4 +23,7 @@ $(document).ready(function(){
                   $(form).submit();
           });
         
-});
+}
+
+$(document).ready(typeahead);
+$(document).on('page:load', typeahead);

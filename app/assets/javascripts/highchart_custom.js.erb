@@ -1,0 +1,108 @@
+<% p1 = Player.where(stat:'regular').where(position:'PG') %>
+<% p2 = Player.where(stat:'playoff').where(position:'PG') %>
+var ready;
+ready = function () {
+   $('#chart-1').highcharts({
+        chart: {
+            plotBackgroundColor: '#f8f8f8',
+            plotBorderWidth: null,
+            plotShadow: false,
+            backgroundColor: '#f8f8f8',
+            marginBottom: 0,
+            spacingBottom: 0,
+            spacingTop: 5
+        },
+        credits: {
+            enabled: false
+        },
+        exporting: {
+            enabled: false
+        },
+        title: {
+            text: 'Shot Share-Regular Season',
+            y: 30
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                size: '150',
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Share of Total Shots',
+            data: [
+                ['0-3ft',   <%=p1.sum(:dist_0to3feet_fga)%>],
+                ['3-10ft', <%=p1.sum(:dist_3to10feet_fga)%>],
+                ['10-16ft', <%=p1.sum(:dist_10to16feet_fga)%>],
+                ['16ft-3PT', <%=p1.sum(:dist_16to3pt_fga)%>],
+                ['3PT+', <%=p1.sum(:threept_fga)%>]
+            ]
+        }]
+    });
+    $('#chart-2').highcharts({
+        chart: {
+            plotBackgroundColor: '#f8f8f8',
+            plotBorderWidth: null,
+            plotShadow: false,
+            backgroundColor: '#f8f8f8',
+            marginBottom: 0,
+            spacingBottom: 0,
+            spacingTop: 5
+         },
+        credits: {
+            enabled: false
+        },
+        exporting: {
+            enabled: false
+        },
+        title: {
+            text: 'Shot Share-Playoffs',
+            y: 30
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                size: '150',
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Share of Total Shots',
+            data: [
+                ['0-3ft',   <%=p2.sum(:dist_0to3feet_fga)%>],
+                ['3-10ft', <%=p2.sum(:dist_3to10feet_fga)%>],
+                ['10-16ft', <%=p2.sum(:dist_10to16feet_fga)%>],
+                ['16ft-3PT', <%=p2.sum(:dist_16to3pt_fga)%>],
+                ['3PT+', <%=p2.sum(:threept_fga)%>]
+            ]
+        }]
+    });
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+

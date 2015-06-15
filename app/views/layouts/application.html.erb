@@ -5,48 +5,14 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= yield :head %>
 </head>
 <body>
 
-        <div class="container">
-               <a href='/' class="navbar-brand" id="smell-logo">track<span class="black" >and</span>cheese</a>
-               <div class="hidden-sm hidden-md hidden-lg" id="navigation-button">
-                       <button data-toggle="dropdown">
-                               <span class='sr-only'>Toggle navigation</span>
-                               <div class="icon-bar"></div>
-                               <div class="icon-bar"></div>
-                               <div class="icon-bar"></div>
-                       </button>
-                       <ul class='dropdown-menu pull-right'>
-                                <li><a class='current' href='/'>cheese</a></li>
-                                <li><a href='/'>sports</a></li>
-                                <li><a href='/'>government</a></li>
-                                <li><a href='/'>news</a></li>
-                                <li><a href='/'>health</a></li>
-                                <li class='divider'></li>
-                                <li><a href='/'>about</a></li>
-                       </ul>
-               </div>
-               <ul class="nav navbar-nav navbar-right hidden-xs" id="smell-nav">
-                       <li><a class='current' href='/'>cheese</a></li>
-                       <li><a href='/'>sports</a></li>
-                       <li><a href='/'>government</a></li>
-                       <li><a href='/'>news</a></li>
-                       <li class="divide-after"><a href='/'>health</a></li>
-                       <li class="divide-before"><a href='/'>about</a></li>
-        
-               </ul>
-               <div class="row" >
-                       <div class="col-xs-12">
-                               <div class="brder">
-                               </div>
-                       </div>
-               </div>
-                
-               
+              
                 <%= yield %>
 
-
+                <!--
                <div class="navbar navbar-default navbar-fixed-bottom navbar-fixed-width hidden-xs">
                        <ul class="nav navbar-nav navbar-left"> 
                                <li><a href='/'>first</a></li>
@@ -57,8 +23,8 @@
                                 <li><a href='/'>last</a></li>
                         </ul>
                </div>
+               -->
         
-        </div>
 
 
 </body>
