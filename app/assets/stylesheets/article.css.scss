@@ -77,6 +77,9 @@ i {
         display: inline-block;
         margin-right: 8px;
         position: relative;
-        top: 2px;
+        top: 4px;
+        &.icon-library, &.icon-dribbble {
+                top: 2px;
+        }
 }
 

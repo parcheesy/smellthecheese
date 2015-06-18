@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'government' => 'articles#government'
   get 'news'        => 'articles#news'
   get 'health'     => 'articles#health'
+  get 'programming'      => 'articles#programming'
   get 'about'      => 'articles#about'
 
   # The priority is based upon order of creation: first created -> highest priority.
