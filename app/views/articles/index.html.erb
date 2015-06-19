@@ -42,7 +42,7 @@
                                 <div class="row text-left" id="article">
                                         <div class="col-xs-12 text-left">
                                
-                                              <%= link_to " <i class='icon-dribbble'></i>".html_safe, sports_path%><h2><%=article.title%></h2>
+                                              <%= link_to " <i class='icon-dribbble hidden-xs'></i>".html_safe, sports_path%><h2><%=article.title%></h2>
                 
                                                 <%= render :partial => "apps/app_template", :locals => { :app => article.apps.first } %>
                                                 
