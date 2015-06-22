@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150612083054) do
+ActiveRecord::Schema.define(version: 20150622130940) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -234,6 +234,28 @@ ActiveRecord::Schema.define(version: 20150612083054) do
     t.decimal  "twopt_percasstd"
     t.integer  "games"
     t.integer  "games_started"
+  end
+
+  create_table "sectors", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "industry"
+    t.string   "year"
+    t.string   "sector"
+    t.integer  "d_house_count"
+    t.decimal  "d_house_tot_contrib"
+    t.integer  "r_house_count"
+    t.decimal  "r_house_tot_contrib"
+    t.integer  "i_house_count"
+    t.decimal  "i_house_tot_contrib"
+    t.integer  "d_senate_count"
+    t.decimal  "d_senate_tot_contrib"
+    t.integer  "r_senate_count"
+    t.decimal  "r_senate_tot_contrib"
+    t.integer  "i_senate_count"
+    t.decimal  "i_senate_tot_contrib"
+    t.integer  "connection_id"
+    t.string   "keywords"
   end
 
 end

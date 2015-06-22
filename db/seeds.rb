@@ -2,12 +2,14 @@ Article.destroy_all
 App.destroy_all
 Player.destroy_all
 Season.destroy_all
+Sector.destroy_all
 Assignment.destroy_all
 Connection.destroy_all
 Seasonassociation.destroy_all
 
 players = ActiveSupport::JSON.decode(File.read("jsons/better_playoff_players.json"))
 seasons = ActiveSupport::JSON.decode(File.read("jsons/better_player_playoff_seasons.json"))
+sectors = ActiveSupport::JSON.decode(File.read("jsons/opengov.json"))
 
 #Create players
 Player.create!(players)
@@ -33,6 +35,13 @@ Player.all.each do |p|
 end
 
 p "Added #{Seasonassociation.count} season to player association"
+
+#Create sectors
+Sector.create!(sectors)
+
+p "Created #{Sector.count} sectors"
+
+
 
 #Add Articles
 article1 = Article.create(title: "NBA Regular Season vs Playoffs: Player Performance", date: "June 3, 2015", topic: "sports", body: "
@@ -215,6 +224,53 @@ app2 = App.create(name:"position_shots", position:"top", object:"Player", citati
 ")
 
 Assignment.create(app: app2, article: article2)
+
+article3 = Article.create(title:"Campaign Finance During Major Legislative Change", date:"June 17, 2015", topic:"government", body:"
+
+<p>A big issue in the upcoming presidential election will undoubtedly be the presence and influence of money in politics. Whether that means something will actually change is another question entirely. This will be the first of many posts trying to visualize how money influences politics. The ultimate goal will be a detailed look at how ties to certain industries determines voting on particular bills. But that is probably a long ways away because it involves analyzing bill language and seeing which industries are hurt or helped by certain legislation.</p>
+
+<p>Until then, the graphs above give a general sense of how contributions to congress from different industries have changed over the last two decades. I've marked some major events on the graph to give context. Of particular note is the huge spike in contributions during the financial crisis of 2008. It's as if every industry knew that the financial crisis would lead to major reforms and wanted to make sure its own voice was heard. There definitely could have been other factors including the historic nature of the 2008 election. But regardless, it's interesting that companies increased campaign contributions during a time when they were hemorrhaging money and heavily laying off workers. Oddly, the contribution spike is much more prominent on the senate side rather than the house side.</p>
+
+<p>Of course more research and work is needed. My knowledge of the political and economic landscapes at these different times leaves a lot to be desired. Interesting to look at though.</p>
+
+
+")
+
+app3 = App.create(name:"sector_campaign_money", position:"top", object:"Sector", citation:"Statistics from OpenSecrets.org, Chart uses higcharts.js", html:"
+<form accept-charset='UTF-8' action='/apps' method='get' class='special-submit' data-remote='true'>
+        <input type='hidden' name='appid' value='<%=app.id%>'>
+        <input type='hidden' name='congress_house' value='senate'>
+        <div class='col-xs-12 text-center input-group'>
+               <div class='input-group-btn'>
+                      <button type='submit' name='congress_house' value='senate' class='special btn btn-default active' selected>Senate</button>
+                      <button type='submit' name='congress_house' value='house' class='special btn btn-default'>House</button>
+               </div>
+        </div>
+
+        <div class='col-xs-12 text-center industry_money'>
+                <select class='sector_select'  name='namesearch' onchange=\"$(this.form).submit();\"> 
+                      <option value='Agribusiness' selected>Agribusiness</option>
+                      <option value='Communications/Electronics'>Communications/Electronics</option>
+                      <option value='Construction'>Construction</option>
+                      <option value='Defense'>Defense</option>
+                      <option value='Energy/Natural Resources'>Energy/Natural Resources</option>
+                      <option value='Finance/Insurance/Real Estate'>Finance/Insurance/Real Estate</option>
+                      <option value='Health'>Health</option>
+                      <option value='Lawyers & Lobbyists'>Lawyers & Lobbyists</option>
+                      <option value='Transportation'>Transportation</option>
+                      <option value='Misc Business'>Misc Business</option>
+                      <option value='Labor'>Labor</option>
+                      <option value='Ideology/Single-Issue'>Ideology/Single-Issue</option>
+                      <option vaule='Other'>Other</option>
+                </select>
+        </div>
+</form>
+        
+<div class='col-xs-12 text-center position_shots chart' id='chart-3' >
+</div>
+")
+
+Assignment.create(app:app3, article:article3)
 
 p "Loaded #{Article.count} articles with #{Assignment.count} assignments to #{App.count} apps"
 

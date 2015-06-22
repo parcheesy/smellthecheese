@@ -1,0 +1,113 @@
+<% sector = @app_objects.where(industry:'overall').where.not(year:'All cycles').order(:year) %>
+<% house = @app_additional %>
+
+$(function() {
+    $('#chart-3').highcharts({
+        chart: {
+            plotBackgroundColor: '#f8f8f8',
+            plotBorderWidth: null,
+            plotShadow: false,
+            backgroundColor: '#f8f8f8',
+        },
+        credits: {
+            enabled: false
+        },
+        exporting: {
+            enabled: false
+        },
+        title: {
+                text: 'Campaign Money Contributed by Industry',
+                y: 30
+        },
+        xAxis: {
+                title: {
+                        text: 'Year'
+                },
+                categories: ['1990', '1992', '1994', '1996', '1998', '2000', '2002', '2004', '2006', '2008', '2010', '2012', '2014'],
+                plotLines: [{
+                        color: 'purple',
+                        width: 2,
+                        value: 9,
+                        label: {
+                                text:'Financial Crisis'
+                                }
+                }, {
+                        color: 'purple',
+                        width: 2,
+                        value: 10,
+                        label: {
+                                text:'Affordable Care Act'
+                                }
+                }, {
+                        color: 'purple',
+                        width: 2,
+                        value: 6,
+                        label: {
+                                text:'Iraq War Begins'
+                                }
+                }, {
+                        color: 'purple',
+                        width: 2,
+                        value: 5.5,
+                        label: {
+                                text:'9/11 Attack'
+                                }
+                }, {
+                        color: 'purple',
+                        width: 2,
+                        value: 4.5,
+                        label: {
+                                text:'Gramm-Leach-Biley Act'
+                                }
+                
+                }, {
+                        color: 'purple',
+                        width: 2,
+                        value: 3,
+                        label: {
+                                text:'Telecommunications Act'
+                        }
+                }]
+
+        },
+        yAxis: {
+                title: {
+                        text: 'Dollars Contributed'
+                },
+                plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                }]
+        },
+        tooltip: {
+                pointFormat: '{series.name}: <b>${point.y:,.0f}</b><br/>'
+        },
+        legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+        },
+        series: [{
+                name: 'Democrats',
+                color: '#0000FF',
+                data: [<%= sector.pluck("d_#{house}_tot_contrib".to_sym).map{|x| x.to_s}.join(", ")%>]
+        }, {
+                name: 'Republicans',
+                color: '#FF0000',
+                data: [<%= sector.pluck("r_#{house}_tot_contrib").map{|x| x.to_s}.join(", ")%>]
+        }, {
+                name: 'Total',
+                color: '#00FF00',
+                data: [<%= sector.pluck("r_#{house}_tot_contrib").zip(sector.pluck("d_#{house}_tot_contrib")).map {|x, y| (x+y).to_s}.join(", ")%>]
+
+        }
+
+        ]
+    });
+
+
+});
+
+

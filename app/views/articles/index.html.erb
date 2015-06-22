@@ -11,9 +11,6 @@
                                 <li id='cheese'><%= link_helper("cheese", root_path, @current) %></li>
                                 <li id='sports'><%= link_helper("sports", sports_path, @current) %></li>
                                 <li id='government'><%= link_helper("government", government_path, @current)%></li>
-                                <li id='news'><%= link_helper("news", news_path, @current) %></li>
-                                <li id='health'><%= link_helper("health", health_path, @current) %></li>
-                                <li id='programming'><%= link_helper("programming", programming_path, @current) %></li>
                                 <li class='divider'></li>
                                 <li class='about'><%= link_helper("about", about_path, @current) %></li>
                        </ul>
@@ -21,10 +18,7 @@
                <ul class="nav navbar-nav navbar-right hidden-xs" id="smell-nav">
                                 <li id='cheese'><%= link_helper("cheese", root_path, @current) %></li>
                                 <li id='sports'><%= link_helper("sports", sports_path, @current) %></li>
-                                <li id='government'><%= link_helper("government", government_path, @current)%></li>
-                                <li id='news'><%= link_helper("news", news_path, @current) %></li>
-                                <li id='health'><%= link_helper("health", health_path, @current) %></li>
-                                <li id='programming' class="divide-after"><%= link_helper("programming", programming_path, @current) %></li>
+                                <li id='government' class="divide-after"><%= link_helper("government", government_path, @current)%></li>
                                 <li id='about' class="divide-before"><%= link_helper("about", about_path, @current) %></li>
                </ul>
                <div class="row" >
@@ -39,10 +33,10 @@
                 <% if @articles.present? %>
                         <% @articles.each do |article|  %>
                 
-                                <div class="row text-left" id="article">
+                                <div class="row text-left posts" id="article">
                                         <div class="col-xs-12 text-left">
                                
-                                              <%= link_to " <i class='icon-#{article.topic} hidden-xs'></i>".html_safe, sports_path%><h2><%=article.title%></h2>
+                                              <%= link_to " <i class='icon-#{article.topic} hidden-xs'></i>".html_safe, eval("#{article.topic}_path")%><h2><%=article.title%></h2>
                 
                                                 <%= render :partial => "apps/app_template", :locals => { :app => article.apps.first } %>
                                                 
@@ -68,28 +62,14 @@
 
                                 <div class="col-xs-12 text-left" id="about">
                                         <h4>About</h4>
-                                        <p>I'm a recent convert to the wonderful world of programming and this is a place for me to publish work as I learn. I'll be posting about random topics that interest me, while trying to keep them organized into the categories below. Don't be surprised if there are many more sports posts than the rest combined.</p>
-                                </div>
-                                <div class="col-xs-6 text-center topics" id='about-sports'>
-                                        <%= link_to "<i class='icon-sports'></i><h4>Sports</h4>".html_safe, sports_path%>
-                                        <p>Any sports-related topics will likely be focused on basketball or football because those are the only sports I know anything about. I'm hoping to create some fun ways to visualize sports data.</p>
-                                </div>
-                                <div class="col-xs-6 text-center topics" id='about-government'>
-                                        <%= link_to "<i class='icon-government'></i><h4>Government</h4>".html_safe, government_path%><p>I think government data is ripe for the tinkering. It's become much easier to access these days and there are a lot of people and organizations doing great work with it. I want to find ways to contribute as well, especially in areas of campaign finance and legislative transparency.</p>
-                                </div>
-                                <div class="col-xs-6 text-center topics" id='about-news'>
-                                        <%= link_to "<i class='icon-news'></i><h4>News</h4>".html_safe, news_path%>
-                                        <p>This will cover any random topic I feel like exploring from recent news.</p>
-                                </div>
-                                <div class="col-xs-6 text-center topics" id='about-health'>
-                                        <%= link_to "<i class='icon-health'></i><h4>Health</h4>".html_safe, health_path%>
-                                        <p>Health data is always a popular area to explore. Every once in a while I'll try to dabble in topics like nutrition and public health.</p>
-                                </div>
-                                <div class="col-xs-12 text-center topics" id='about-programming'>
-                                        <%= link_to "<i class='icon-programming'></i><h4>Programming</h4>".html_safe, programming_path%>
-                                        <p>And of course, a section for programming topics.</p>
+                                        <p>I'm an entry-level programmer and this is a place for me to publish work as I learn. I'll be posting about random topics that interest me using whatever techniques I'm exploring at the time. I especially enjoy data visualization. Don't be surprised if most posts have to do with sports, specifically basketball.</p>
+                                        <p>If you're wondering, <i>cheese</i> is a reference to <i>parcheesy</i>, my completely nonsensical pseudonym. And if the name of this blog still doesn't make sense I've overestimated my ability to come up with cheesy puns.</p>
+                                        <p>Have a grate day!</p>
+                                        <p>Okay, I cheddar stop now.</p>  
                                 </div>
 
+                               </div>
+                               
                         <% else %>
                                 <div class="row text-left" id="article">
 
