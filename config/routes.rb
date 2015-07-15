@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :apps
-  resources :articles
-  root to:            'articles#index'
+  resources :apps, only: :index
+  resources :articles, only: [:index, :sports, :government, :news, :health, :programming, :about]
+  root to:           'articles#index'
   get 'sports'     => 'articles#sports' 
   get 'government' => 'articles#government'
   get 'news'        => 'articles#news'

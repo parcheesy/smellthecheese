@@ -4,11 +4,17 @@ class AppsController < ApplicationController
   # GET /apps
   # GET /apps.js
   def index
+    # Find app based on passed appid parameter
     @app = App.find(params[:appid].to_i)
+    # @app.object is the type of object the specific app uses
+    # Uses connection join table to find app object that matches namesearch parameter
     @app_objects = @app.connection.send(@app.object.downcase.pluralize).search(params[:namesearch], @app.name)
+    # Special behavior for campaign money app
+    # Need to refactor. This logic should not be in controller
     if @app.name=="sector_campaign_money"
         @app_additional = params[:congress_house]
     end
+    #Render proper javascript based on app name
     respond_to do |format|
         if @app.name=="position_shots"
                 format.js { render "hchart" }

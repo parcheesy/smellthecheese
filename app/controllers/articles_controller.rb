@@ -1,5 +1,4 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   # GET /articles
   def index
@@ -55,22 +54,10 @@ class ArticlesController < ApplicationController
 
   # GET /articles/about
   def about
-    @current = "about"
-    @articles = Article.where(topic:"health").order(created_at: :desc)
     @empty_message = "about"
     @current = "about"
-
     render "index"
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def article_params
-      params.require(:article).permit(:title, :date, :body, :imagePath)
-    end
 end

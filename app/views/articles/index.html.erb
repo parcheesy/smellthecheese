@@ -1,4 +1,5 @@
  <div class="container">
+               <!--Header and Navigation -->
                 <%=link_to "track<span class='black' >and</span>cheese".html_safe, root_path, class:"navbar-brand", id:"smell-logo" %>
                <div class="hidden-sm hidden-md hidden-lg" id="navigation-button">
                        <button data-toggle="dropdown">
@@ -21,6 +22,7 @@
                                 <li id='government' class="divide-after"><%= link_helper("government", government_path, @current)%></li>
                                 <li id='about' class="divide-before"><%= link_helper("about", about_path, @current) %></li>
                </ul>
+               <!-- Separator between header and content -->
                <div class="row" >
                        <div class="col-xs-12">
                                <div class="brder">
@@ -29,24 +31,24 @@
                </div>
                 
         
-
+                <!--Render each article in chronological order -->
                 <% if @articles.present? %>
                         <% @articles.each do |article|  %>
                 
                                 <div class="row text-left posts" id="article">
                                         <div class="col-xs-12 text-left">
-                               
+                                              <!--Icon is link to topic specific page  -->
                                               <%= link_to " <i class='icon-#{article.topic} hidden-xs'></i>".html_safe, eval("#{article.topic}_path")%><h2><%=article.title%></h2>
-                
+                                                <!--Render app(s) for article  -->
                                                 <%= render :partial => "apps/app_template", :locals => { :app => article.apps.first } %>
                                                 
                                                 <h5 id="post-date">Posted <%= article.date  %></h5>
-                
+                                                <!-- Article Body -->
                                                 <%= raw article.body  %>
                 
                                         </div>
                                 </div>
-                
+                                <!-- Article separator if there are multiple articles and current article is not the last one -->
                                 <% if @articles.count>1 && article!=@articles.last %>
                 
                                 <div class="col-xs-12 spacer">
@@ -57,6 +59,7 @@
                 
                         <% end %>
                 <% else %>
+                        <!-- About section. Need to transfer to own article -->
                         <% if @current=="about" %>
                                 <div class= "row text-left" id="article">
 
@@ -69,7 +72,7 @@
                                 </div>
 
                                </div>
-                               
+                        <!-- If no posts exist in section -->       
                         <% else %>
                                 <div class="row text-left" id="article">
 

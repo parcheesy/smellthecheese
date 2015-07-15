@@ -1,4 +1,4 @@
-<%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
+<!-- Render App html from database -->
 <div class="app col-xs-12" id="<%=app.cssid%>">
         <%= render html: ERB.new(app.html).result(binding).html_safe %>
 </div>

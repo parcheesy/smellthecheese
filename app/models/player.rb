@@ -5,24 +5,31 @@ class Player < ActiveRecord::Base
         before_save :set_keywords
         after_create :set_totals
         
+        #Search for position or name
         def self.search(namesearch, app_name)
                 if namesearch.present?
+                        #Checks for position match if app calls for it
                         if app_name=="position_shots"
                                 where(position: namesearch)
+                        #Checks for player name otherwise
                         else
                                 where('keywords LIKE ?', "%#{namesearch.downcase}%")
                         end
                 end                
         end
-
+        
+        #Create properly formatted percentage 
+        #Should be moved out of model
         def self.sum_percents(num, denom)
                 (sum(num)/sum(denom) * 100).to_f.round(2)
         end
-
+        
+        #Set career position based on last season's position
         def set_position
                 self.update_attributes(position: seasons.last.position)
         end
         
+        #Change height string into float
         def set_height_float
                 h, f = height.split("-")
                 f = f.to_f/12
@@ -32,10 +39,11 @@ class Player < ActiveRecord::Base
         end
 
         protected
+                # Set search Terms
                 def set_keywords
                         self.keywords = name.downcase
                 end
-
+                # Set total attempts and makes for each shot based on percentages
                 def set_totals
                         if stat!="diff"
                                 self.update_attributes({fga:fga_pg*games, fgm:fgm_pg*games})
